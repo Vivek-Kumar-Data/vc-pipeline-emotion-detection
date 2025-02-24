@@ -4,7 +4,7 @@ import os
 import yaml
 import logging
 
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 logger = logging.getLogger('feature_engineering')
 logger.setLevel('DEBUG')
@@ -62,7 +62,7 @@ def preprocessing(train_data,test_data,max_features):
         y_test = test_data['sentiment'].values
         logger.debug('got values of x/y trian&test.')
         # Apply Bag of Words (CountVectorizer)
-        vectorizer = CountVectorizer(max_features=max_features)
+        vectorizer = TfidfVectorizer(max_features=max_features)
         # Fit the vectorizer on the training data and transform it
         X_train_bow = vectorizer.fit_transform(X_train)
         # Transform the test data using the same vectorizer
@@ -97,8 +97,8 @@ def save_data(train_data:pd.DataFrame, test_data:pd.DataFrame,data_path:str) -> 
         logger.debug("directory made successfully")
         # yaha par hamara data wala folder ban jayega our raw wala folder ban jayega.
         # now we will save the file to our new directory.
-        train_data.to_csv(os.path.join(data_path,'train_bow.csv'))
-        test_data.to_csv(os.path.join(data_path,'test_bow.csv'))
+        train_data.to_csv(os.path.join(data_path,'train_tfidf.csv'))
+        test_data.to_csv(os.path.join(data_path,'test_tfidf.csv'))
         logger.debug("output files successfully created to path : ",data_path)
 
     except Exception as e:

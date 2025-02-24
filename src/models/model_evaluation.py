@@ -99,7 +99,7 @@ def save_metrics(metrics_dict):
 
 def main():
     clf = load_pickle('model.pkl')
-    test_data = load_data('./data/interim/test_bow.csv')
+    test_data = load_data('./data/interim/test_tfidf.csv')
     X_test, y_test = splitting_data(test_data=test_data)
     y_pred,y_pred_proba = making_predictions(X_test=X_test,clf=clf)
     metrics_dict = calcuation(y_test=y_test,y_pred=y_pred,y_pred_proba=y_pred_proba)

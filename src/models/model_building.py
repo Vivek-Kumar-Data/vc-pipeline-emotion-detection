@@ -75,7 +75,7 @@ def build_model(model,X_train,y_train):
 
 def main():
     model = get_yaml('params.yaml')
-    train_data = get_data('./data/interim/train_bow.csv')
+    train_data = get_data('./data/interim/train_tfidf.csv')
     X_train,y_train = split_data(train_data=train_data)
     build_model(model,X_train=X_train,y_train=y_train)
 
